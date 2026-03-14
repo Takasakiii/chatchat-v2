@@ -1,0 +1,23 @@
+<h1>ChatChatV2</h1>
+<span
+  >Software de baixissimo custo e vontade do programador para que seus amigos entrem call nessa era
+  de trevas</span
+>
+
+<h2>Iniciar</h2>
+<form [formGroup]="form" (ngSubmit)="handleFormSubmit()">
+  <label>Nick: <input type="text" placeholder="Pitas" [formControl]="form.controls.nick" /></label
+  ><br />
+  <label
+    >Room: <input type="text" placeholder="semideia" [formControl]="form.controls.room"
+  /></label>
+  <br />
+  <button type="submit">Iniciar Chat</button>
+</form>
+
+<h2>Soluções de problemas</h2>
+<p>Se algo não tiver funcionando sinto muito 😁, o dev como sempre não irá corrigir</p>
+
+<br />
+<br />
+<small>Feito com 😡 pelo Takasaki</small>
