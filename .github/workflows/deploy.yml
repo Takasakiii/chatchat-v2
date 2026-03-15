@@ -1,0 +1,49 @@
+name: Deploy Angular with Bun
+
+on:
+  push:
+    branches: ['main']
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: 'pages'
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 📥 Checkout do código
+        uses: actions/checkout@v4
+
+      - name: 🍞 Configurar Bun
+        uses: oven-sh/setup-bun@v1
+        with:
+          bun-version: latest
+
+      - name: 📦 Instalar dependências
+        run: bun install --frozen-lockfile
+
+      - name: 🏗️ Build do Angular
+        run: bun x ng build --configuration production --base-href /chatchat-v2/
+
+      - name: 🔧 Configurar GitHub Pages
+        uses: actions/configure-pages@v4
+
+      - name: 📤 Upload do Artefato
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: './docs/browser'
+
+      - name: 🚀 Deploy para GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
