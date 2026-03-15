@@ -8,18 +8,10 @@ import {
   NostrRoomSession,
   PeerMedia,
   PeerSessionInfo,
+  PeerState,
   WebRTCEventType,
   WebRTCNostrEvent,
 } from '../dtos';
-
-interface PeerState {
-  media: PeerMedia | null;
-  session: PeerSessionInfo | null;
-  pendingIceCandidates: RTCIceCandidateInit[];
-  makingOffer: boolean;
-  ignoreOffer: boolean;
-  isSettingRemoteAnswerPending: boolean;
-}
 
 @Injectable({
   providedIn: 'root',

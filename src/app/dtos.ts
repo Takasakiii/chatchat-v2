@@ -64,3 +64,12 @@ export interface WebRTCPeer {
   remotePubKey: string;
   peerConnection: RTCPeerConnection;
 }
+
+export interface PeerState {
+  media: PeerMedia | null;
+  session: PeerSessionInfo | null;
+  pendingIceCandidates: RTCIceCandidateInit[];
+  makingOffer: boolean;
+  ignoreOffer: boolean;
+  isSettingRemoteAnswerPending: boolean;
+}
